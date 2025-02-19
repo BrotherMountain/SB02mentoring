@@ -1,6 +1,11 @@
 package com.jyami
 
-// gc options: -Xms10MB -Xmx50MB -Xlog:gc*:logs/gc.log:t,l,tg:filecount=10,filesize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=logs
+// gc options:
+// -Xms10MB
+// -Xmx50MB
+// -Xlog:gc*:logs/gc.log:t,l,tg:filecount=10,filesize=10M
+// -XX:+HeapDumpOnOutOfMemoryError
+// -XX:HeapDumpPath=logs
 //
 
 fun main() {
