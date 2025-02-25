@@ -161,3 +161,44 @@ Main 함수를 이용한 테스트는 개발 중 빠르게 동작을 확인할 �
   - 예상하지 못한 변경이 발생했을 때, 어떤 부분이 영향을 받았는지 빠르게 확인할 수 있음.
   - 지속적인 리팩토링이 가능해지고, 안정적으로 새로운 기능을 추가할 수 있음.
  
+
+--- 
+## gradle 이란?
+프로젝트를 실행할 준비를 해주는 도구
+
+### Gradle이 하는 일
+1. 프로젝트의 코드를 컴파일
+  - 없으면 직접 모든 파일 컴파일
+  - `javac -d out -cp src src/com/example/App.java` 
+2. 라이브러리 다운로드 & 관리
+  - 없으면 직접 사용할 라이브러리를 Maven Repository에서 JAR 파일을 직접 다운로드
+  - 수동으로 classpath 설정 후 컴파일
+  - `javac -cp "libs/spring-boot-starter-2.7.5.jar:libs/other-lib.jar" -d out src/com/example/App.java`
+3. 테스트 실행
+  - 테스트 코드도 javac로 직접 컬파일. 
+  - JUnit 같은 테스트 프레임워크를 실행하려면 수동으로 classpath를 설정한다.
+  - 여러 개의 테스트가 있을 경우 아래와 같은 커멘드로 각 테스트를 일일이 실행한다.
+  - `javac -cp "libs/junit-jupiter-api-5.9.0.jar" -d out test/com/example/AppTest.java`
+  - `java -cp "libs/junit-jupiter-api-5.9.0.jar:out" org.junit.platform.console.ConsoleLauncher --select-class com.example.AppTest`
+4. 애플리케이션 패키징 & 배포
+  - jar 명령어를 직접 실행한다.
+  - `jar cvf app.jar -C out .`
+  - `-C out` : out 디렉터리에서 .class 파일을 찾아서 JAR로 묶는다.
+  - 만약 의존성이 있는 라이브러리도 포함해야 한다면? 직접 작업해줘야한다. 또한 실행시에도 classpath를 설정해줘야 한다.
+  - `java -cp "app.jar:libs/spring-boot-starter-2.7.5.jar" com.example.Main`
+
+### intellij 를 이용해서 gradle 을 사용할 때의 편의성
+IntelliJ IDEA는 Gradle과 강력하게 통합되어 있어, Gradle을 편리하게 사용할 수 있다.
+IntelliJ 덕분에 터미널에서 직접 Gradle 명령어를 입력하지 않아도, 버튼 클릭만으로 여러 작업을 쉽게 실행할 수 있다!
+
+터미널 작업 없이 GUI 로 쉽게 Gradle 작업을 수행할 수 있다.
+
+- gradle sync : Gradle 설정 파일(build.gradle)을 IntelliJ가 읽고, 프로젝트를 최신 상태로 유지하는 과정
+![img.png](image/img2.png)
+![img.png](image/img3.png)
+- 일반적인 빌드 (gradle build) : `/gradlew build (터미널)`
+- Gradle을 사용한 애플리케이션 실행 (gradle run) : `/gradlew run`
+- 테스트 실행 (gradle test) : `/gradlew test`
+- JAR 파일 생성 (gradle jar) : `/gradlew jar`
+- Fat JAR (의존성 포함된 실행 가능한 JAR) 만들기 : `/gradlew bootJar`
+

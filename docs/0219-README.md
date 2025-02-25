@@ -76,7 +76,7 @@ application 실행 configuration 에서 VM options 에 jvm 옵션을 넣어준�
 ```
 -Xms10m -Xmx50m -Xlog:gc*:logs/gc.log:t,l,tg:filecount=10,filesize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=logs
 ```
-![img.png](img.png)
+![img.png](./image/img.png)
 
 
 ### 외부 서버 vm 에서 command line으로 실행 할 경우
