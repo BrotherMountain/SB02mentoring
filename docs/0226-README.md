@@ -1,3 +1,5 @@
+# 인터페이스, optional, JUnit5 테스트 코드
+
 ## 인터페이스
 
 인터페이스(interface)는 클래스가 따라야 할 행동(메서드의 집합)을 정의하는 일종의 계약(contract)입니다.
@@ -7,7 +9,7 @@
 
 ### 왜 사용해야하는가
 
-1) 유연성
+#### 1) 유연성
 
 인터페이스를 사용하면 구현체를 변경하더라도 코드 변경을 최소화할 수 있습니다.
 
@@ -21,7 +23,7 @@ UserRepository userRepository = new UserRepositoryHashImpl(); // HashMap 기반 
 - HashMap 기반 구현 : ID를 키(key)로 활용 → 검색 속도가 O(1). (ID 기반 검색시에만 - DB의 index와 비슷한 역할을 하도록 함.)
 - List를 사용하여 데이터를 순차적으로 저장. → 검색 시 O(N)의 성능을 가지므로, 데이터가 많아지면 속도가 느려짐.
 
-2) 확장성
+#### 2) 확장성
 새로운 저장 방식이 필요하면, 기존 코드를 변경하지 않고 새로운 클래스를 추가하면 됨.
 ```java
 public class UserRepositoryTreeMapImpl implements UserRepository {
@@ -49,7 +51,7 @@ public class UserRepositoryRedisImpl implements UserRepository {
 - findByEmail(String email): User를 직접 반환하고, 값이 없으면 예외 발생
 
 
-#### 1. Optional을 사용하는 경우
+### 1. Optional을 사용하는 경우
 ```java
 @Override
 public Optional<User> findById(long userId) {
@@ -66,7 +68,7 @@ User user = userOptional.orElseThrow(() -> new UserNotFoundException("User not f
 System.out.println("User found: " + user.getName());
 ```
 
-#### 2. Optional을 사용하지 않는 경우
+### 2. Optional을 사용하지 않는 경우
 ```java
 @Override
 public User findByEmail(String email) {
@@ -89,22 +91,21 @@ System.out.println("User found: " + user.getName());
 - 반드시 예외가 발생하므로, Optional과 달리 빈 값에 대한 후처리 코드가 필요 없음.
 
 
-#### 언제 사용해야할까?
-언제 Optional을 사용해야 할까?
+### 언제 Optional을 사용해야 할까?
 - 해당 데이터가 없을 가능성이 있는 경우.
 - 예외 대신 기본값을 사용하거나 다른 처리를 하고 싶은 경우.
 - 데이터가 없을 때 반드시 예외를 던질 필요가 없는 경우.
 
-#### 언제 Optional을 사용하지 말아야 할까?
+### 언제 Optional을 사용하지 말아야 할까?
 - 반드시 값이 존재해야 하는 경우.
 - 데이터가 없을 때 예외를 던지는 것이 논리적으로 더 적절한 경우.
 - 데이터가 없으면 로직이 더 이상 진행될 수 없는 경우.
 
 ----
 
-### junit5 테스트코드
+## junit5 테스트코드
 
-#### Main 함수 기반 테스트
+### Main 함수 기반 테스트
 
 ```java
 public class Main {
@@ -129,7 +130,7 @@ public class Main {
 
 -----
 
-## JUnit5 테스트 코드
+### JUnit5 테스트 코드
 
 Main 함수를 이용한 테스트는 개발 중 빠르게 동작을 확인할 때는 유용하지만, 유지보수나 반복 테스트에 불편함이 있다.
 
