@@ -1,13 +1,13 @@
 package com.jyami.dto;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
 public record ReadStatusDto(
-        long id,
-        long userId,
-        long channelId,
-        @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-        LocalDateTime lastReadAt) {
+    long id,
+    long userId,
+    long channelId,
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    LocalDateTime lastReadAt) {
 }

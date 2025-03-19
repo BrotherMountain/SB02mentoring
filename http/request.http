@@ -1,0 +1,14 @@
+POST http://localhost:8080/read
+Content-Type: application/json
+
+{
+"id": 1,
+"userId": 1,
+"channelId": 1,
+"lastReadAt": "2025-03-14 00:20:46"
+}
+
+
+###
+
+GET http://localhost:8080/read/1
