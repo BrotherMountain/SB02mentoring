@@ -2,12 +2,14 @@ package com.jyami.repository;
 
 import com.jyami.dto.UserDto;
 import com.jyami.entity.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Repository
 public class UserRepositoryListImpl implements UserRepository {
 
     private final List<User> users = new ArrayList<>();

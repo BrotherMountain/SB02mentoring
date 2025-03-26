@@ -1,0 +1,9 @@
+project.name: mentoring
+
+discodeit:
+  repository:
+    type: file
+    file:
+      user: user.dat
+      channel: channel.dat
+      message: message.dat
