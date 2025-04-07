@@ -2,6 +2,8 @@ package com.jyami.service;
 
 import com.jyami.dto.ReadStatusDto;
 import com.jyami.entity.ReadStatus;
+import com.jyami.error.ErrorCode;
+import com.jyami.error.LogicException;
 import com.jyami.mapper.ReadStatusMapper;
 import org.springframework.stereotype.Service;
 
@@ -30,10 +32,10 @@ public class ReadStatusService {
     public ReadStatusDto findById(Long id) {
         System.out.println("Find read status by id");
         ReadStatus readStatus = db.get(id);
-        if (readStatus != null) {
-            return readStatusMapper.toDto(readStatus);
+        if (readStatus == null) {
+            throw new LogicException(ErrorCode.INVALID_REQUEST);
         }
-        return null;
+        return readStatusMapper.toDto(readStatus);
     }
 
 
